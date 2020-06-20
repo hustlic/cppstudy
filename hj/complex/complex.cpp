@@ -33,6 +33,11 @@ Complex Complex::operator-()
     return Complex (-this->getRe(), -this->getIm());
 }
 
+Complex& Complex::operator+()
+{
+    return *this;
+}
+
 void Complex::dump() const
 {
     std::cout<<"real("<<this->getRe()<<"),im("<<this->getIm()<<")"<<std::endl;

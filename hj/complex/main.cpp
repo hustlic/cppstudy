@@ -32,7 +32,9 @@ int main(int argc, char*argv[])
 
     c4.dump();
     c4=-c4;
+    c4.dump();
 
+    c4=+c4;
     c4.dump();
     return 0;
 }

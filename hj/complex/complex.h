@@ -30,6 +30,7 @@ class Complex
 
         //pass by value
         Complex operator +(const Complex&);
+        Complex& operator+();
         Complex operator-();
 
         void dump() const;

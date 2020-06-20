@@ -20,6 +20,7 @@ Complex & Complex::operator+=(const Complex& c)
 
 Complex Complex::operator+(const Complex& c)
 {
+    std::cout<<"member override +"<<std::endl;
     Complex newItem;
     newItem.im += this->getIm()+c.getIm();
     newItem.re += this->getRe()+c.getRe();
@@ -30,4 +31,13 @@ Complex Complex::operator+(const Complex& c)
 void Complex::dump() const
 {
     std::cout<<"real("<<this->getRe()<<"),im("<<this->getIm()<<")"<<std::endl;
+}
+
+Complex operator+(const Complex& a, const Complex b)
+{
+    std::cout<<"global override +"<<std::endl;
+    Complex c(a.getRe()+b.getRe(), a.getIm()+b.getRe());
+
+    return c;
+    
 }

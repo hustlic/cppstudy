@@ -38,4 +38,6 @@ class Complex
 
 };
 
+Complex operator+(const Complex& a, const Complex b);
+
 #endif

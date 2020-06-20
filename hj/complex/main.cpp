@@ -7,11 +7,25 @@
  * 
  * *************************************************/
 
+#include <iostream>
 #include "complex.h"
+
+using namespace std;
 
 int main(int argc, char*argv[])
 {
-    Complex c1;
+    Complex c1(1,2), c2(2,2);
 
+    c1+=c2;
+
+    c1.dump();
+
+    Complex c3=c1+c2;
+
+    c3.dump();
+
+    const Complex c4(5,6);
+    c4.dump();
+     
     return 0;
 }

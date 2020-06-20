@@ -25,6 +25,14 @@ class Complex
 
         double getRe() const {return re;}
 
+        //pass by reference
+        Complex& operator +=(const Complex&);
+
+        //pass by value
+        Complex operator +(const Complex&);
+
+        void dump() const;
+
     private:
         double im, re;
 

@@ -28,6 +28,11 @@ Complex Complex::operator+(const Complex& c)
     return newItem;
 }
 
+Complex Complex::operator-()
+{
+    return Complex (-this->getRe(), -this->getIm());
+}
+
 void Complex::dump() const
 {
     std::cout<<"real("<<this->getRe()<<"),im("<<this->getIm()<<")"<<std::endl;
@@ -39,5 +44,5 @@ Complex operator+(const Complex& a, const Complex b)
     Complex c(a.getRe()+b.getRe(), a.getIm()+b.getRe());
 
     return c;
-    
+
 }

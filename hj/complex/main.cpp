@@ -25,8 +25,14 @@ int main(int argc, char*argv[])
 
     c3.dump();
 
-    const Complex c4(5,6);
+    Complex c4(5,6);
     c4.dump();
 
+    c4+=c3+=c2+=c1;
+
+    c4.dump();
+    c4=-c4;
+
+    c4.dump();
     return 0;
 }

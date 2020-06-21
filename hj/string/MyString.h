@@ -17,13 +17,12 @@ class MyString
 
         MyString(const char* str);
 
-        /*
         //copy constructor
         MyString(const MyString &);
 
         //copy assign
         MyString& operator=(const MyString &);
-        */
+
         ~MyString();
 
         char *getChar()const {return this->m_data;}

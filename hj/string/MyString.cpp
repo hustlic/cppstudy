@@ -31,7 +31,20 @@ MyString::MyString(const char* str)
         this->m_data = new char[1];
         this->m_data = 0;
     }
-    
+
+}
+
+MyString::MyString(const MyString &str)
+{
+    this->m_data = new char[strlen(str.getChar()) + 1 ];
+    strcpy(this->m_data, str.getChar());
+}
+
+MyString& MyString::operator=(const MyString &str)
+{
+    this->m_data = new char[strlen(str.getChar()) + 1 ];
+    strcpy(this->m_data, str.getChar());
+    return *this;
 }
 
 MyString::~MyString()

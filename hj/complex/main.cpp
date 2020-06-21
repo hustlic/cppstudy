@@ -62,8 +62,10 @@ void testString()
     MyString *s4 = new MyString("test s4");
     std::cout << "s4="<<s4 <<", s4->data="<<s4->getChar()<< std::endl;
 
-
     delete s4;
+
+    MyString s6 = s1;
+    std::cout << "s6="<<&s6<<", s6->data="<<s6.getChar()<< std::endl;
 }
 
 int main(int argc, char*argv[])

@@ -55,6 +55,10 @@ void testString()
     MyString s3;
     std::cout << "s3="<<&s3 << std::endl;
 
+    // will call ctor
+    MyString s5 = MyString();
+    std::cout << "s5="<<&s5 << std::endl;
+
     MyString *s4 = new MyString("test s4");
     std::cout << "s4="<<s4 <<", s4->data="<<s4->getChar()<< std::endl;
 

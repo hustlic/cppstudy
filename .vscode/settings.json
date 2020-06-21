@@ -2,6 +2,31 @@
     "cmake.configureOnOpen": true,
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "*.tcc": "cpp",
+        "cctype": "cpp",
+        "clocale": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp",
+        "cstdarg": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp"
     }
 }

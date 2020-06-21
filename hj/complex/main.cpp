@@ -9,10 +9,11 @@
 
 #include <iostream>
 #include "complex.h"
+#include "MyString.h"
 
 using namespace std;
 
-int main(int argc, char*argv[])
+void testComplex()
 {
     Complex c1(1,2), c2(2,2);
 
@@ -36,5 +37,36 @@ int main(int argc, char*argv[])
 
     c4=+c4;
     c4.dump();
+
+}
+
+void testString()
+{
+    MyString s1("helloworld");
+    std::cout << s1.getChar() << std::endl;
+    std::cout << "s1="<<&s1 <<", s1->data="<<s1.getChar()<< std::endl;
+
+    // will not call ctor, why?
+    MyString s2();
+    //std::cout << "s2="<<&s2 <<", s2->data="<<&(s2.getChar())<< std::endl;
+    std::cout << "s2="<<&s2 << std::endl;
+
+    // will call ctor
+    MyString s3;
+    std::cout << "s3="<<&s3 << std::endl;
+
+    MyString *s4 = new MyString("test s4");
+    std::cout << "s4="<<s4 <<", s4->data="<<s4->getChar()<< std::endl;
+
+
+    delete s4;
+}
+
+int main(int argc, char*argv[])
+{
+    testComplex();
+
+    testString();
+
     return 0;
 }

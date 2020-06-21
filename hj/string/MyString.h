@@ -10,6 +10,8 @@
 #ifndef __MYSTRING_H_
 #define __MYSTRING_H_
 
+#include <iostream>
+
 class MyString
 {
     public:
@@ -30,5 +32,10 @@ class MyString
     private:
         char* m_data;
 };
+
+inline std::ostream& operator<<(std::ostream& os, const MyString& str)
+{
+    return os<<str.getChar();
+}
 
 #endif

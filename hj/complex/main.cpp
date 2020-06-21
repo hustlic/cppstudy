@@ -38,6 +38,8 @@ void testComplex()
     c4=+c4;
     c4.dump();
 
+    std::cout<<c4<<std::endl;
+
 }
 
 void testString()
@@ -69,6 +71,8 @@ void testString()
 
     s6=s6;
     std::cout << "s6="<<&s6<<", s6->data="<<s6.getChar()<< std::endl;
+
+    std::cout<<s6<<std::endl;
 }
 
 int main(int argc, char*argv[])

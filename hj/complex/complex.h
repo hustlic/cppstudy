@@ -10,6 +10,8 @@
 #ifndef _COMPLEX_H_
 #define _COMPLEX_H_
 
+#include <iostream>
+
 //template<typename Complex_Type>
 
 class Complex
@@ -41,5 +43,11 @@ class Complex
 };
 
 Complex operator+(const Complex& a, const Complex b);
+
+inline std::ostream& operator<<(std::ostream& os, const Complex& c)
+{
+    return os<<"("<<c.getRe()<<","<<c.getIm()<<")";
+
+}
 
 #endif

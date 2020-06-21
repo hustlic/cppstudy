@@ -42,6 +42,12 @@ MyString::MyString(const MyString &str)
 
 MyString& MyString::operator=(const MyString &str)
 {
+    if(this == &str)
+        return *this;
+
+    if(this->m_data)
+        delete[] this->m_data;
+
     this->m_data = new char[strlen(str.getChar()) + 1 ];
     strcpy(this->m_data, str.getChar());
     return *this;

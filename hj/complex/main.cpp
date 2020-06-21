@@ -66,6 +66,9 @@ void testString()
 
     MyString s6 = s1;
     std::cout << "s6="<<&s6<<", s6->data="<<s6.getChar()<< std::endl;
+
+    s6=s6;
+    std::cout << "s6="<<&s6<<", s6->data="<<s6.getChar()<< std::endl;
 }
 
 int main(int argc, char*argv[])

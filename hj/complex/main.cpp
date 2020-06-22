@@ -10,6 +10,8 @@
 #include <iostream>
 #include "complex.h"
 #include "MyString.h"
+#include "Ak47.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -75,11 +77,25 @@ void testString()
     std::cout<<s6<<std::endl;
 }
 
+void testCs()
+{
+    Player p1(100, "cser1");
+    Ak47 myAk47;
+    myAk47.fire();
+    p1.setMainGun(&myAk47);
+    p1.fire();
+
+    //Player p2(100, "cser2");
+    //p2.fire();
+}
+
 int main(int argc, char*argv[])
 {
-    testComplex();
+    //testComplex();
 
-    testString();
+    //testString();
+
+    testCs();
 
     return 0;
 }

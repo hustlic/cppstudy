@@ -26,7 +26,7 @@ class Guns
         ~Guns();
 
         void reload(){this->m_curBullet = this->m_maxBullet;}
-        int  getCurBullet()const{return m_curBullet;}
+        virtual int  getCurBullet()const{return m_curBullet;}
         int  getMaxBullet()const{return m_maxBullet;}
         char* getName()const{return m_name;}
         void setCurBullet(int curBullet){this->m_curBullet = curBullet;}

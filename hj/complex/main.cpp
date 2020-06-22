@@ -84,6 +84,7 @@ void testCs()
     myAk47.fire();
     p1.setMainGun(&myAk47);
     p1.fire();
+    std::cout<<"p1 "<<p1.getMainGun()->getCurBullet()<<"bullet left"<<endl;
 
     //Player p2(100, "cser2");
     //p2.fire();

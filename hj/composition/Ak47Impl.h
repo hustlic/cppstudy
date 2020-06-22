@@ -6,24 +6,18 @@
  * |_|  |_|\____/|_____/   |_|    |_| |_|  \___|
  * 
  * *************************************************/
+#ifndef __AK47IMPL_H__
+#define __AK47IMPL_H__
 
-#include <iostream>
+#include "Guns.h"
 
-#include "Ak47.h"
-
-#define AK47_MAX_BULLET (30)
-
-Ak47::Ak47():Guns("Ak47", 30, 30)
+class Ak47Impl:public Guns
 {
-    std::cout<<"new Ak47 created" <<std::endl;
-    this->m_ak47Impl = new Ak47Impl();
-}
+    public:
+        Ak47Impl();
+        ~Ak47Impl();
+        virtual void fire();
+    
+};
 
-
-Ak47::~Ak47()
-{
-    //this->m_ak47Impl->~Ak47Impl();
-    delete m_ak47Impl;
-    std::cout<<"ak dtcor" <<std::endl;
-}
-
+#endif

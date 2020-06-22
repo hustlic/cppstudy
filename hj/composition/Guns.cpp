@@ -12,7 +12,7 @@
 #include "Guns.h"
 #define FAKE_GUN "FAKE_GUN"
 
-Guns::Guns(const char* name, int curBullet, int maxBullet)
+Guns::Guns(const char* name, const int curBullet, const int maxBullet)
 {
     std::cout<<"Guns created"<<std::endl;
     if(!name)

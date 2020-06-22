@@ -25,6 +25,8 @@ class Player
 
         void setMainGun(Guns *gun){this->m_mainGun = gun;}
 
+        Guns* getMainGun() const{return m_mainGun;}
+
     private:
         int   m_health;
         Guns* m_mainGun;

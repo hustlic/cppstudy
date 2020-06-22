@@ -12,6 +12,7 @@ set(src_files
     hj/string/MyString.cpp
     hj/composition/Guns.cpp
     hj/composition/Ak47.cpp
+    hj/composition/Ak47Impl.cpp
     hj/composition/Player.cpp)
 
 add_executable(test_complex ${src_files})

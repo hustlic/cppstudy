@@ -10,6 +10,7 @@
 #define __AK47_H__
 
 #include "Guns.h"
+#include "Ak47Impl.h"
 
 class Ak47:public Guns
 {
@@ -19,7 +20,13 @@ class Ak47:public Guns
 
         ~Ak47();
 
-        virtual void fire();
+        virtual void fire(){m_ak47Impl->fire();}
+        int getMaxBullet() const {return m_ak47Impl->getMaxBullet();}
+        int setCurBullet(const int bullet) {m_ak47Impl->setCurBullet(bullet);}
+        int getCurBullet() const {return m_ak47Impl->getCurBullet();}
+
+    private:
+        Ak47Impl *m_ak47Impl;
     
 };
 

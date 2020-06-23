@@ -5,6 +5,7 @@ project(hustlic_cpp)
 include_directories(hj/complex)
 include_directories(hj/string)
 include_directories(hj/composition)
+include_directories(hj/fraction)
 
 set(src_files
     hj/complex/complex.cpp
@@ -13,6 +14,7 @@ set(src_files
     hj/composition/Guns.cpp
     hj/composition/Ak47.cpp
     hj/composition/Ak47Impl.cpp
-    hj/composition/Player.cpp)
+    hj/composition/Player.cpp
+    hj/fraction/Fraction.cpp)
 
 add_executable(test_complex ${src_files})

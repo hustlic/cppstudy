@@ -12,6 +12,7 @@
 #include "MyString.h"
 #include "Ak47.h"
 #include "Player.h"
+#include "Fraction.h"
 
 using namespace std;
 
@@ -90,13 +91,32 @@ void testCs()
     //p2.fire();
 }
 
+void testFraction()
+{
+    //1. change f1 to double(1.4)
+    //2. 1.4+5.4=6.8
+    //3. convert 6.8 to 6 , and call ctor Fraction(6, 1), so f2=6/1
+    Fraction f1(7, 5);
+    //Fraction f2 = f1 + 5.4;
+    Fraction f2 = Fraction(f1 + 5.4);
+    std::cout <<"f2="<<f2.getNumerator()<<"/"<<f2.getDenominator()<<std::endl;
+
+    //1. change f1 to double(1.4)
+    //2. 3.0+1.4=4.4
+    double i = 3.0 + f1;
+    std::cout<<"i="<<i<<std::endl;
+
+}
+
 int main(int argc, char*argv[])
 {
     //testComplex();
 
     //testString();
 
-    testCs();
+    //testCs();
+
+    testFraction();
 
     return 0;
 }

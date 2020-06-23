@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 2.8)
 
 project(hustlic_cpp)
 
+add_compile_options(-std=c++14)
+
 include_directories(hj/complex)
 include_directories(hj/string)
 include_directories(hj/composition)

@@ -96,7 +96,7 @@ void testFraction()
     //1. change f1 to double(1.4)
     //2. 1.4+5.4=6.8
     //3. convert 6.8 to 6 , and call ctor Fraction(6, 1), so f2=6/1
-    Fraction f1(7, 5);
+    Fraction f1{7, 5};
     //Fraction f2 = f1 + 5.4;
     Fraction f2 = Fraction(f1 + 5.4);
     std::cout <<"f2="<<f2.getNumerator()<<"/"<<f2.getDenominator()<<std::endl;

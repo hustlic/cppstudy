@@ -13,8 +13,9 @@
 #include "Ak47.h"
 #include "Player.h"
 #include "Fraction.h"
+#include "common.h"
 
-using namespace std;
+//using namespace std;
 
 void testComplex()
 {
@@ -85,7 +86,7 @@ void testCs()
     myAk47.fire();
     p1.setMainGun(&myAk47);
     p1.fire();
-    std::cout<<"p1 "<<p1.getMainGun()->getCurBullet()<<"bullet left"<<endl;
+    std::cout<<"p1 "<<p1.getMainGun()->getCurBullet()<<"bullet left"<<std::endl;
 
     //Player p2(100, "cser2");
     //p2.fire();
@@ -111,6 +112,18 @@ void testFraction()
 
 }
 
+void testFunctionTemplate()
+{
+    Fraction<int> f1(3, 4), f2(1,2);
+    Fraction<int> f3 = min(f1, f2);
+    f3.dump();
+
+    Complex c1(10, 20), c2(5, 5);
+    Complex c3 = min(c1, c2);
+
+    c3.dump();
+}
+
 int main(int argc, char*argv[])
 {
     //testComplex();
@@ -119,7 +132,9 @@ int main(int argc, char*argv[])
 
     //testCs();
 
-    testFraction();
+    //testFraction();
+
+    testFunctionTemplate();
 
     return 0;
 }

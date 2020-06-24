@@ -35,6 +35,8 @@ class Complex
         Complex& operator+();
         Complex operator-();
 
+        bool operator<(const Complex& a)const{return this->re < a.re;}
+
         void dump() const;
 
     private:

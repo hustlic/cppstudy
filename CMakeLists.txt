@@ -8,6 +8,7 @@ include_directories(hj/complex)
 include_directories(hj/string)
 include_directories(hj/composition)
 include_directories(hj/fraction)
+include_directories(hj/include)
 
 set(src_files
     hj/complex/complex.cpp

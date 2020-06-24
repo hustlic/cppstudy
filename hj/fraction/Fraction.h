@@ -43,10 +43,20 @@ class Fraction
             return *this;
         }
 
+        bool operator<(const Fraction& a)const
+        {
+            return this->m_numerator < a.m_numerator;
+        }
+
         inline Fraction_Type getNumerator()   const {return m_numerator;}
         inline Fraction_Type getDenominator() const {return m_denominator;}
 
         Fraction getTemp(){return Fraction(1,1);}
+
+        void dump()
+        {
+            std::cout<<"("<<m_numerator<<"/"<<m_denominator<<")"<<std::endl;
+        }
 
 
     private:
@@ -54,5 +64,7 @@ class Fraction
         Fraction_Type m_denominator;
     
 };
+
+
 
 #endif

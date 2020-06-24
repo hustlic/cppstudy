@@ -96,15 +96,18 @@ void testFraction()
     //1. change f1 to double(1.4)
     //2. 1.4+5.4=6.8
     //3. convert 6.8 to 6 , and call ctor Fraction(6, 1), so f2=6/1
-    Fraction f1{7, 5};
+    Fraction<int> f1{7, 5};
     //Fraction f2 = f1 + 5.4;
-    Fraction f2 = Fraction(f1 + 5.4);
+    Fraction<int> f2 = Fraction<int>(f1 + 5.4);
     std::cout <<"f2="<<f2.getNumerator()<<"/"<<f2.getDenominator()<<std::endl;
 
     //1. change f1 to double(1.4)
     //2. 3.0+1.4=4.4
     double i = 3.0 + f1;
     std::cout<<"i="<<i<<std::endl;
+
+    Fraction<int> &&a=f1.getTemp();
+    std::cout<<a.getNumerator()<<"/"<<a.getDenominator()<<std::endl;
 
 }
 

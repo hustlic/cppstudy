@@ -49,6 +49,7 @@ Guns& Guns::operator=(const Guns& gun)
     this->m_curBullet = gun.m_curBullet;
     this->m_name = new char[strlen(gun.m_name) + 1];
     strcpy(this->m_name, gun.m_name);
+    return *this;
 }
 
 Guns::~Guns()

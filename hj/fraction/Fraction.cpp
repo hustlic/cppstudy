@@ -19,11 +19,3 @@ Fraction& Fraction::operator+(const double& a)const
 }
 #endif
 
-Fraction& Fraction::operator+(const Fraction& a)const
-{
-    std::cout<<"call Fraction+Fraction operator+"<<std::endl;
-    Fraction *b = new Fraction(this->m_numerator + a.m_numerator
-                        , this->m_denominator+a.m_denominator);
-
-    return *b;
-}

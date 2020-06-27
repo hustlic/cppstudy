@@ -98,7 +98,7 @@ void testFraction()
     //1. change f1 to double(1.4)
     //2. 1.4+5.4=6.8
     //3. convert 6.8 to 6 , and call ctor Fraction(6, 1), so f2=6/1
-    Fraction<int> f1{7, 5};
+    const Fraction<int> f1{7, 5};
     //Fraction f2 = f1 + 5.4;
     Fraction<int> f2 = Fraction<int>(f1 + 5.4);
     std::cout <<"f2="<<f2.getNumerator()<<"/"<<f2.getDenominator()<<std::endl;
@@ -110,6 +110,12 @@ void testFraction()
 
     Fraction<int> &&a=f1.getTemp();
     std::cout<<a.getNumerator()<<"/"<<a.getDenominator()<<std::endl;
+
+    Fraction<double> f3 = Fraction<double>();
+    Fraction<int> &&b=f2.getTemp();
+    std::cout<<b.getNumerator()<<"/"<<b.getDenominator()<<std::endl;
+
+    
 
 }
 
@@ -140,6 +146,12 @@ void testVariadicTemplate()
     print(10, 20, std::bitset<4>(254), "hello");
 }
 
+void testAuto()
+{
+    for(auto& i:{1,2,3,4})
+        std::cout<<i<<std::endl;
+}
+
 int main(int argc, char*argv[])
 {
     std::cout<<__cplusplus<<std::endl;
@@ -150,11 +162,13 @@ int main(int argc, char*argv[])
 
     //testCs();
 
-    //testFraction();
+    testFraction();
 
     //testFunctionTemplate();
 
-    testVariadicTemplate();
+    //testVariadicTemplate();
+
+    //testAuto();
 
     return 0;
 }

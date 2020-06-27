@@ -51,7 +51,9 @@ class Fraction
         inline Fraction_Type getNumerator()   const {return m_numerator;}
         inline Fraction_Type getDenominator() const {return m_denominator;}
 
-        Fraction getTemp(){return Fraction(1,1);}
+        Fraction getTemp()const {return Fraction(1,1);}
+
+        Fraction getTemp() {return Fraction(10,1);}
 
         void dump()
         {
@@ -69,9 +71,11 @@ template <>
 class Fraction<double>
 {
     public:
+        Fraction(){std::cout<<"double ctor"<<std::endl;}
+
         Fraction& operator+(const Fraction& f)const
         {
-            std::cout<<"specialization called"<<std::endl;
+            std::cout<<"specialization called, const"<<std::endl;
             
 
         }

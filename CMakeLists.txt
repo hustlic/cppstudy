@@ -20,4 +20,4 @@ set(src_files
     hj/composition/Player.cpp
     hj/fraction/Fraction.cpp)
 
-add_executable(test_complex ${src_files})
+add_executable(test_cpp ${src_files})

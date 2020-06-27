@@ -65,6 +65,18 @@ class Fraction
     
 };
 
+template <>
+class Fraction<double>
+{
+    public:
+        Fraction& operator+(const Fraction& f)const
+        {
+            std::cout<<"specialization called"<<std::endl;
+            
+
+        }
+};
+
 
 
 #endif

@@ -8,6 +8,7 @@
  * *************************************************/
 
 #include <iostream>
+#include <bitset>
 #include "complex.h"
 #include "MyString.h"
 #include "Ak47.h"
@@ -124,8 +125,25 @@ void testFunctionTemplate()
     c3.dump();
 }
 
+
+void print(){std::cout<<"nothing to print"<<std::endl;}
+
+template<typename T,  typename... Types>
+void print(const T& a, const Types&... Args)
+{
+    std::cout<<a<<std::endl;
+    print(Args...);
+}
+
+void testVariadicTemplate()
+{
+    print(10, 20, std::bitset<4>(254), "hello");
+}
+
 int main(int argc, char*argv[])
 {
+    std::cout<<__cplusplus<<std::endl;
+
     //testComplex();
 
     //testString();
@@ -134,7 +152,10 @@ int main(int argc, char*argv[])
 
     //testFraction();
 
-    testFunctionTemplate();
+    //testFunctionTemplate();
+
+    testVariadicTemplate();
 
     return 0;
 }
+

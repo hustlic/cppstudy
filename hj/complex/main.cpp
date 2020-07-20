@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <bitset>
+#include <thread>
 #include "complex.h"
 #include "MyString.h"
 #include "Ak47.h"
@@ -152,6 +153,24 @@ void testAuto()
         std::cout<<i<<std::endl;
 }
 
+
+/*---------------------------
+* thread test
+*/
+void thread_task(){std::cout<<"hello thread"<<std::endl;}
+
+int testThread()
+{
+    unsigned int n = std::thread::hardware_concurrency();
+    std::cout<< n << " concurrent threads are supported" << std::endl;
+
+    std::thread t(thread_task);
+    t.join();
+
+    return EXIT_SUCCESS;
+}
+
+
 int main(int argc, char*argv[])
 {
     std::cout<<__cplusplus<<std::endl;
@@ -162,13 +181,15 @@ int main(int argc, char*argv[])
 
     //testCs();
 
-    testFraction();
+    //testFraction();
 
     //testFunctionTemplate();
 
     //testVariadicTemplate();
 
     //testAuto();
+
+    testThread();
 
     return 0;
 }

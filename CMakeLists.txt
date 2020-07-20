@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.8)
 
-project(hustlic_cpp)
+project(test_cpp)
 
 add_compile_options(-std=c++14)
 
@@ -20,4 +20,8 @@ set(src_files
     hj/composition/Player.cpp
     hj/fraction/Fraction.cpp)
 
+#LINK_DIRECTORIES(/usr/local/lib)
+
 add_executable(test_cpp ${src_files})
+
+target_link_libraries(${PROJECT_NAME} -lpthread)

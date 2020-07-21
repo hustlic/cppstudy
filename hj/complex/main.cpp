@@ -190,7 +190,7 @@ void thread_task()
 
 }
 
-int testThread()
+int testThread_01()
 {
     unsigned int n = std::thread::hardware_concurrency();
     std::cout<< n << " concurrent threads are supported" << std::endl;
@@ -204,7 +204,29 @@ int testThread()
     return EXIT_SUCCESS;
 }
 
+int testThread_02()
+{
+    MyThread* myThread = new MyThread();
 
+    myThread->start();
+
+    while(1)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        myThread->requestExitAndWait(2*1000);
+        if(myThread->isRunning())
+            std::cout<<"myThread is still running, can't wait any more"<<std::endl;
+        break;
+    }
+}
+
+int testThread()
+{
+    testThread_01();
+    testThread_02();
+
+    return 0;
+}
 
 
 int main(int argc, char*argv[])
@@ -225,20 +247,7 @@ int main(int argc, char*argv[])
 
     //testAuto();
 
-    //testThread();
-
-    MyThread* myThread = new MyThread();
-
-    myThread->start();
-
-    while(1)
-    {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        myThread->requestExitAndWait(2*1000);
-        if(myThread->isRunning())
-            std::cout<<"myThread is still running, can't wait any more"<<std::endl;
-        break;
-    }
+    testThread();
 
     return 0;
 }

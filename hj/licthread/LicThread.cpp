@@ -115,6 +115,11 @@ void LicThread::join()
     mThread->join();
 }
 
+bool LicThread::joinable()
+{
+    return mThread->joinable();
+}
+
 void LicThread::detach()
 {
     mThread->detach();
@@ -125,5 +130,4 @@ bool LicThread::isRunning()
     Autolock _l(mLock);
     return mRunning;
 }
-
 

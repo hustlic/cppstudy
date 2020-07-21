@@ -42,14 +42,14 @@ public:
     status_t requestExitAndWait(uint32_t timeoutMs);
 
     status_t start();
-    void threadFunc();
 
     void join();
+
+    bool joinable();
 
     void detach();
 
     bool isRunning();
-
 
 
 protected:
@@ -64,9 +64,15 @@ private:
     // 2) once: if threadLoop() returns false, the thread will exit upon return.
     virtual bool threadLoop() = 0;
 
+    void threadFunc();
+
 
 private:
-    LicThread& operator=(const LicThread&);
+    LicThread(const LicThread& thread) = delete;
+    LicThread(const LicThread&&) = delete;
+    LicThread& operator=(const LicThread&) = delete;
+
+
     // note that all accesses of mExitPending and mRunning need to hold mLock
     volatile bool               mExitPending;
     volatile bool               mRunning;

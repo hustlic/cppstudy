@@ -15,9 +15,9 @@
 
 class     Autolock {
 public:
-    inline     Autolock(std::mutex& mutex) : mLock(mutex)  { mLock.lock(); }
-    inline     Autolock(std::mutex* mutex) : mLock(*mutex) { mLock.lock(); }
-    inline ~    Autolock() { mLock.unlock(); }
+    inline     Autolock(std::mutex& mutex) : mLock(mutex)  { mLock.lock();}
+    inline     Autolock(std::mutex* mutex) : mLock(*mutex) { mLock.lock();}
+    inline ~    Autolock() { mLock.unlock();}
 private:
     std::mutex& mLock;
 

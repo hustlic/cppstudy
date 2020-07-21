@@ -16,9 +16,16 @@
 
 #include "LicAutoLock.h"
 
+#ifndef __uint32_t_defined  
+typedef unsigned int            uint32_t;  
+# define __uint32_t_defined  
+#endif
+
+
 enum{
     NO_ERROR = 0,
     ERROR_ALREADY_RUNNING,
+    ERROR_WOULD_BLOCK,
 };
 
 typedef int32_t status_t;
@@ -26,13 +33,23 @@ typedef int32_t status_t;
 class LicThread
 {
 public:
-    LicThread();
+    explicit LicThread();
     ~LicThread();
 
     void requestExit();
 
+    status_t requestExitAndWait();
+    status_t requestExitAndWait(uint32_t timeoutMs);
+
     status_t start();
     void threadFunc();
+
+    void join();
+
+    void detach();
+
+    bool isRunning();
+
 
 
 protected:
@@ -54,8 +71,9 @@ private:
     volatile bool               mExitPending;
     volatile bool               mRunning;
     status_t                    mStatus;
+    std::mutex                  mLock;
     std::mutex                  mMutex;
-    std::condition_variable     mCond;
+    std::condition_variable     mExitedCondition;
     std::thread*                mThread;
 
 };

@@ -166,8 +166,11 @@ class MyThread:public LicThread
         ~MyThread(){}
         virtual bool threadLoop()
         {
-            std::cout<<"hello thread_"<<i++<<std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            for(auto i = 0; i < 10; i++)
+            {
+                std::cout<<"hello thread_"<<i<<std::endl;
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+            }
 
             return true;
         }
@@ -230,8 +233,10 @@ int main(int argc, char*argv[])
 
     while(1)
     {
-        std::this_thread::sleep_for(std::chrono::seconds(10));
-        myThread->requestExit();
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        myThread->requestExitAndWait(2*1000);
+        if(myThread->isRunning())
+            std::cout<<"myThread is still running, can't wait any more"<<std::endl;
         break;
     }
 

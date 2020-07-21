@@ -9,6 +9,8 @@ include_directories(hj/string)
 include_directories(hj/composition)
 include_directories(hj/fraction)
 include_directories(hj/include)
+include_directories(hj/licthread)
+
 
 set(src_files
     hj/complex/complex.cpp
@@ -18,7 +20,8 @@ set(src_files
     hj/composition/Ak47.cpp
     hj/composition/Ak47Impl.cpp
     hj/composition/Player.cpp
-    hj/fraction/Fraction.cpp)
+    hj/fraction/Fraction.cpp
+    hj/licthread/LicThread.cpp)
 
 #LINK_DIRECTORIES(/usr/local/lib)
 

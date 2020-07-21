@@ -10,12 +10,14 @@
 #include <iostream>
 #include <bitset>
 #include <thread>
+
 #include "complex.h"
 #include "MyString.h"
 #include "Ak47.h"
 #include "Player.h"
 #include "Fraction.h"
 #include "common.h"
+#include "LicThread.h"
 
 //using namespace std;
 
@@ -157,18 +159,49 @@ void testAuto()
 /*---------------------------
 * thread test
 */
-void thread_task(){std::cout<<"hello thread"<<std::endl;}
+class MyThread:public LicThread
+{
+    public:
+        MyThread():i(0){}
+        ~MyThread(){}
+        virtual bool threadLoop()
+        {
+            std::cout<<"hello thread_"<<i++<<std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+
+            return true;
+        }
+    private:
+        int i;
+};
+
+void thread_task()
+{
+    std::cout<<"hello thread"<<std::endl;
+
+    for(int i = 0 ; i < 5; i++)
+    {
+        std::cout <<"thread runing " << i << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+}
 
 int testThread()
 {
     unsigned int n = std::thread::hardware_concurrency();
     std::cout<< n << " concurrent threads are supported" << std::endl;
 
-    std::thread t(thread_task);
-    t.join();
+    std::thread *thd = new std::thread(thread_task);
+    thd->join();
+    //t.detach();
+
+    std::cout<<"main thread finish"<<std::endl;
 
     return EXIT_SUCCESS;
 }
+
+
 
 
 int main(int argc, char*argv[])
@@ -189,7 +222,18 @@ int main(int argc, char*argv[])
 
     //testAuto();
 
-    testThread();
+    //testThread();
+
+    MyThread* myThread = new MyThread();
+
+    myThread->start();
+
+    while(1)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(10));
+        myThread->requestExit();
+        break;
+    }
 
     return 0;
 }

@@ -21,7 +21,8 @@ set(src_files
     hj/composition/Ak47Impl.cpp
     hj/composition/Player.cpp
     hj/fraction/Fraction.cpp
-    hj/licthread/LicThread.cpp)
+    hj/licthread/LicThread.cpp
+    hj/licthread/Message.cpp)
 
 #LINK_DIRECTORIES(/usr/local/lib)
 

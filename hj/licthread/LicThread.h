@@ -26,6 +26,8 @@ enum{
     NO_ERROR = 0,
     ERROR_ALREADY_RUNNING,
     ERROR_WOULD_BLOCK,
+    ERROR_INVALID_OPERATION,
+    ERROR_UNKNOWN,
 };
 
 typedef int32_t status_t;
@@ -54,7 +56,7 @@ public:
 
 protected:
     // exitPending() returns true if requestExit() has been called.
-    bool exitPending() const;
+    bool exitPending();
     
 private:
     // Derived class must implement threadLoop(). The thread starts its life

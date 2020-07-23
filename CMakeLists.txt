@@ -22,7 +22,9 @@ set(src_files
     hj/composition/Player.cpp
     hj/fraction/Fraction.cpp
     hj/licthread/LicThread.cpp
-    hj/licthread/Message.cpp)
+    hj/licthread/Message.cpp
+    hj/licthread/MessageHandler.cpp
+    hj/licthread/LicMessageLoop.cpp)
 
 #LINK_DIRECTORIES(/usr/local/lib)
 

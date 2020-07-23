@@ -18,6 +18,9 @@
 #include "Fraction.h"
 #include "common.h"
 #include "LicThread.h"
+#include "Message.h"
+#include "MessageHandler.h"
+#include "LicMessageLoop.h"
 
 //using namespace std;
 
@@ -178,6 +181,50 @@ class MyThread:public LicThread
         int i;
 };
 
+enum
+{
+    TESTMSG_REQ_00=0,
+    TESTMSG_REQ_01,
+};
+
+class MyMessageLoop:public MessageHandler
+{
+    public:
+        MyMessageLoop():mMessageLoop(this){}
+
+        virtual void onReceiveMessage(Message& msg)
+        {
+            switch(msg.what())
+            {
+                case TESTMSG_REQ_00:
+                    std::cout<<"Get TESTMSG_REQ_00"<<std::endl;
+                    break;
+                case TESTMSG_REQ_01:
+                    std::cout<<"Get TESTMSG_REQ_01"<<std::endl;
+                    break;
+                default:
+                    break;
+            }
+        }
+        status_t start(){mMessageLoop.start();}
+
+        void testReq00(int delayMs)
+        {
+            mMessageLoop.postMessage(Message(TESTMSG_REQ_00), delayMs);
+        }
+
+        void testReq01(int delayMs)
+        {
+            mMessageLoop.postMessage(Message(TESTMSG_REQ_01), delayMs);
+        }
+
+        
+    private:
+        LicMessageLoop   mMessageLoop;
+};
+
+
+
 void thread_task()
 {
     std::cout<<"hello thread"<<std::endl;
@@ -220,10 +267,27 @@ int testThread_02()
     }
 }
 
+
+int testMsgThread()
+{
+    MyMessageLoop* myMessageLoop = new MyMessageLoop();
+    myMessageLoop->start();
+    
+    do
+    {
+        //myMessageLoop->testReq00(1500);
+        //myMessageLoop->testReq01(2000);
+        std::this_thread::sleep_for(std::chrono::seconds(10));
+        myMessageLoop->testReq00(0);
+        myMessageLoop->testReq01(0);
+    }while(1);
+}
+
 int testThread()
 {
-    testThread_01();
-    testThread_02();
+    //testThread_01();
+    //testThread_02();
+    testMsgThread();
 
     return 0;
 }

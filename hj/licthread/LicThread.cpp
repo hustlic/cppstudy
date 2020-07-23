@@ -131,3 +131,9 @@ bool LicThread::isRunning()
     return mRunning;
 }
 
+bool LicThread::exitPending() 
+{
+    Autolock _l(mLock);
+    return mExitPending;
+}
+

@@ -187,10 +187,10 @@ enum
     TESTMSG_REQ_01,
 };
 
-class MyMessageLoop:public MessageHandler
+class MyMessageHandler:public MessageHandler
 {
     public:
-        MyMessageLoop():mMessageLoop(this){}
+        MyMessageHandler():mMessageLoop(this){}
 
         virtual void onReceiveMessage(Message& msg)
         {
@@ -206,7 +206,18 @@ class MyMessageLoop:public MessageHandler
                     break;
             }
         }
-        status_t start(){mMessageLoop.start();}
+        status_t start()
+        {
+            mMessageLoop.start();
+        }
+
+        status_t stop()
+        {
+            //mMessageLoop.requestExitAndWait(0);
+            mMessageLoop.stop();
+            std::cout<<"try to join message loop"<<std::endl;
+            mMessageLoop.join();
+        }
 
         void testReq00(int delayMs)
         {
@@ -216,6 +227,7 @@ class MyMessageLoop:public MessageHandler
         void testReq01(int delayMs)
         {
             mMessageLoop.postMessage(Message(TESTMSG_REQ_01), delayMs);
+            //mMessageLoop.cancelMessage(TESTMSG_REQ_01);
         }
 
         
@@ -229,7 +241,7 @@ void thread_task()
 {
     std::cout<<"hello thread"<<std::endl;
 
-    for(int i = 0 ; i < 5; i++)
+    for(int i = 0 ; i < 10; i++)
     {
         std::cout <<"thread runing " << i << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -243,7 +255,7 @@ int testThread_01()
     std::cout<< n << " concurrent threads are supported" << std::endl;
 
     std::thread *thd = new std::thread(thread_task);
-    thd->join();
+    //thd->join();
     //t.detach();
 
     std::cout<<"main thread finish"<<std::endl;
@@ -270,22 +282,22 @@ int testThread_02()
 
 int testMsgThread()
 {
-    MyMessageLoop* myMessageLoop = new MyMessageLoop();
-    myMessageLoop->start();
+    MyMessageHandler* myMessageHandler = new MyMessageHandler();
+    myMessageHandler->start();
     
     do
     {
-        //myMessageLoop->testReq00(1500);
-        //myMessageLoop->testReq01(2000);
-        std::this_thread::sleep_for(std::chrono::seconds(10));
-        myMessageLoop->testReq00(0);
-        myMessageLoop->testReq01(0);
+        //MyMessageHandler->testReq00(1500);
+        //MyMessageHandler->testReq01(2000);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        myMessageHandler->testReq00(0);
+        myMessageHandler->testReq01(0);
     }while(1);
 }
 
 int testThread()
 {
-    //testThread_01();
+    testThread_01();
     //testThread_02();
     testMsgThread();
 
@@ -311,7 +323,37 @@ int main(int argc, char*argv[])
 
     //testAuto();
 
-    testThread();
+    //testThread();
+    std::thread *thd = new std::thread(thread_task);
+
+    MyMessageHandler* myMessageHandler = new MyMessageHandler();
+    myMessageHandler->start();
+    
+    int choice = 0;
+    while(choice != 9)
+    {
+        std::cin>>choice;
+        std::cout<<"choice is "<<choice<<std::endl;
+
+        switch(choice)
+        {
+            case 0:
+                myMessageHandler->testReq00(0);
+                break;
+            case 1:
+                myMessageHandler->testReq01(0);
+                break;
+            case 9:
+                break;
+        }
+    }
+    std::cout<<"try to join thd"<<std::endl;
+    thd->join();
+
+    std::cout<<"try to stop message loop"<<std::endl;
+    myMessageHandler->stop();
+
+    std::cout<<"all thread quit"<<std::endl;
 
     return 0;
 }

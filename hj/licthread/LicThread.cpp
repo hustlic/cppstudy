@@ -35,11 +35,16 @@ status_t LicThread::start()
     }
 
     mThread = new std::thread(&LicThread::threadFunc, this);
-    this->detach();
+    //this->detach();
 
     return NO_ERROR;
 }
 
+status_t LicThread::stop()
+{
+    requestExit();
+    
+}
 
 void LicThread::threadFunc()
 {
@@ -135,5 +140,10 @@ bool LicThread::exitPending()
 {
     Autolock _l(mLock);
     return mExitPending;
+}
+
+bool LicThread::isCurrentThread()
+{
+    return mThread->get_id() == std::this_thread::get_id();
 }
 

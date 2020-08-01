@@ -14,6 +14,26 @@ LicMessageLoop::~LicMessageLoop()
 {
 }
 
+bool LicMessageLoop::start()
+{
+    LicThread::start();
+}
+
+bool LicMessageLoop::join()
+{
+    LicThread::join();
+}
+
+bool LicMessageLoop::stop()
+{
+    //try to quit threadLoop in LicThread
+    LicThread::requestExit();
+
+    //wakeup the threadloop when the eventlist is empty
+    mEventListConditon.notify_all();
+}
+
+
 bool LicMessageLoop::threadLoop()
 {
     std::unique_lock<std::mutex> lck(mMutex);
@@ -84,17 +104,27 @@ int LicMessageLoop::postMessage(const Message &msg, int delayMs)
     }
     mEventList.insert(it, event);
 
-    return ERROR_UNKNOWN;
+    return NO_ERROR;
 }
 
 int LicMessageLoop::cancelMessage(int what)
 {
-    return ERROR_UNKNOWN;
-}
-
-bool LicMessageLoop::isCurrentThread()
-{
-    return false;
+    Autolock _l(mEventListLock);
+    if(exitPending() || mEventList.empty()) {
+        return ERROR_INVALID_OPERATION;
+    }
+    std::list<Event>::iterator it = mEventList.begin();
+    for(; it != mEventList.end();) {
+        Event event = (*it);
+        if(event.message.what() == what) {
+                it = mEventList.erase(it);
+                std::cout<<"event "<<what<<" cancelled"<<std::endl;
+        }
+        else {
+            ++it;
+        }
+    }
+    return NO_ERROR;
 }
 
 int64_t LicMessageLoop::getNowMilliSec()

@@ -45,6 +45,8 @@ public:
 
     status_t start();
 
+    status_t stop();
+
     void join();
 
     bool joinable();
@@ -52,6 +54,8 @@ public:
     void detach();
 
     bool isRunning();
+
+    bool isCurrentThread();
 
 
 protected:

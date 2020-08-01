@@ -17,12 +17,15 @@ public:
     virtual ~LicMessageLoop();
 
     virtual bool threadLoop();
+    bool start();
+    bool stop();
+    bool join();
 
     int postMessage(const Message &msg, int delayMs = 0);
     int cancelMessage(int what);
     int64_t getNowMilliSec();
 private:
-    bool isCurrentThread();
+
     //DISABLE_COPY(LooperThread)
 private:
     struct Event {
